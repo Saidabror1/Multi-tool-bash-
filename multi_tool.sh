@@ -1,8 +1,20 @@
 #!/bin/bash
 
+function grade() {
 
+    read -p "Ballni yozing (0-100): " ball
 
-
+    if [ "$ball" -gt 85 ]; then
+        echo "Grade: A"
+    elif [ "$ball" -gt 70 ]; then
+        echo "Grade: B"
+    elif [ "$ball" -gt 45 ]; then
+        echo "Grade: C"
+    else
+        echo "Grade: Fail"
+    fi
+}
+#//////////////////////////////////////////////////////////
 function tub() {
     read -p "Son kiriting: " son
     if [ "$son" -le 1 ]; then
@@ -24,16 +36,16 @@ else
     echo "$son — bu tub son emas."
 fi
 }
-
+#//////////////////////////////////////////////////////////
 function kara_jadval {
-    read -p "raqam kiriting: " num1
+    read -p "Raqam kiriting: " num1
 
     for i in $( seq 1 10 )
     do
         echo "$num1 x $i = $((num1*i))"
     done
 }
-
+#//////////////////////////////////////////////////////////
 biggest() {
     read -p "Birinchi sonni kiriting: " num1
     read -p "Ikkinchi sonni kiriting: " num2
@@ -47,15 +59,23 @@ biggest() {
         echo "Biggest: $num3"
     fi
 }
+#//////////////////////////////////////////////////////////
 
-read -p "Tanlang (1 = tub, 2 = kara, 3 = eng katta son): " tanla
-
-if [ "$tanla" = 1 ]; then
-    tub
-elif [ "$tanla" = 2 ]; then
-    kara_jadval
-elif [ "$tanla" = 3 ]; then
-    biggest
-else
-    echo "Noto'g'ri tanlov."
-fi
+while true; do
+    read -p "Tanlang (1 = tub, 2 = kara, 3 = eng katta son, 4 = ball, 0 = chiqish): " tanla
+    if [ "$tanla" = 1 ]; then
+        tub
+    elif [ "$tanla" = 2 ]; then
+        kara_jadval
+    elif [ "$tanla" = 3 ]; then
+        biggest
+    elif [ "$tanla" = 4 ]; then
+        grade
+    elif [ "$tanla" = 0 ]; then
+        echo "Dastur tugadi."
+        break
+    else
+        echo "Noto'g'ri tanlov."
+    fi
+    echo
+done
